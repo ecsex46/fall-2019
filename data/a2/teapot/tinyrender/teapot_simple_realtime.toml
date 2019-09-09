@@ -1,0 +1,17 @@
+[input]
+objfile = "../mesh/tea.obj"
+
+[camera]
+eye = [14.0, 7.0, 0.0]
+at = [0.0, 1.25, 0.0]
+up = [0.0, 1.0, 0.0 ]
+fov = 30.0
+
+[film]
+width = 768
+height = 576
+
+[renderer]
+realtime = true
+type = "direct"
+

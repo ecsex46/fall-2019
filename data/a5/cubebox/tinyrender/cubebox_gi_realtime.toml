@@ -1,0 +1,20 @@
+[input]
+objfile = "../mesh/cubebox_subdivided.obj"
+
+[camera]
+eye = [ 2.5, 0.7, 0.0 ]
+at = [ 0.0, 0.7, 0.0 ]
+up = [ 0.0, 1.0, 0.0 ]
+fov = 49.0
+
+[film]
+width = 800
+height = 450
+
+[renderer]
+realtime = true
+type = "gi"
+maxDepth = 12
+rrProb = 0.95
+rrDepth = 5
+samplesByVertex = 300

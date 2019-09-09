@@ -1,0 +1,20 @@
+[input]
+objfile = "../mesh/teapot.obj"
+
+[camera]
+eye = [14.0, 7.0, 0.0]
+at = [0.0, 1.25, 0.0]
+up = [0.0, 1.0, 0.0 ]
+fov = 30.0
+
+[film]
+width = 600
+height = 400
+
+[renderer]
+type = "direct"
+realtime = false
+emitterSamples = 16
+bsdfSamples = 0
+samplingStrategy = "area"
+spp = 1

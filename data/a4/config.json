@@ -1,0 +1,20 @@
+{
+  "firstlast": "John Doe",
+  "id": 123456789,
+  "course": 446,
+  "assignment": 4,
+  "renders": [
+    {
+      "scene": "Veach with emitter sampling",
+      "render": "offline/veach_emitter.exr"
+    },
+    {
+      "scene": "Veach with BRDF sampling",
+      "render": "offline/veach_bsdf.exr"
+    },
+    {
+      "scene": "Veach with MIS",
+      "render": "offline/veach_mis.exr"
+    }
+  ]
+}

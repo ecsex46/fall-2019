@@ -1,0 +1,16 @@
+[input]
+objfile = "../mesh/dragon.obj"
+
+[camera]
+eye = [9.0, 4.0, 0.25]
+at = [0.0, 1.71, 0.25]
+up = [0.0, 1.0, 0.0 ]
+fov = 30.0
+
+[film]
+width = 1280
+height = 720
+
+[renderer]
+realtime = true
+type = "normal"

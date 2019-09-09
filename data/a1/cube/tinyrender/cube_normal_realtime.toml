@@ -1,0 +1,16 @@
+[input]
+objfile = "../mesh/cube.obj"
+
+[camera]
+eye = [5.0, 5.0, 5.0]
+at = [0.0, -0.1, 0.0]
+up = [0.0, 1.0, 0.0 ]
+fov = 30.0
+
+[film]
+width = 720
+height = 720
+
+[renderer]
+realtime = true
+type = "normal"

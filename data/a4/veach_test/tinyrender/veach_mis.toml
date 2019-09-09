@@ -1,0 +1,19 @@
+[input]
+objfile = "../mesh/veach_mis.obj"
+[camera]
+eye = [0.0, 2.0, 15.0]
+at = [0.0, -2.0, 2.5]
+up = [0.0, 1.0, 0.0]
+fov = 35.0
+
+[film]
+width = 600
+height = 400
+
+[renderer]
+type = "direct"
+realtime = false
+emitterSamples = 64
+bsdfSamples = 64
+samplingStrategy = "mis"
+spp = 1

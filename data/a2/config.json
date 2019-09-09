@@ -1,0 +1,28 @@
+{
+	"firstlast": "John Doe",
+	"id": 123456789,
+	"assignment": 2,
+	"course": 446,
+	"renders": [
+    {
+      "scene": "Teapot (offline)",
+      "render": "offline/teapot_simple_offline.exr"
+    },
+    {
+      "scene": "Cbox (offline)",
+      "render": "offline/cbox_simple_offline.exr"
+    },
+    {
+      "scene": "Teapot (real-time)",
+      "render": "realtime/teapot_simple_realtime.exr"
+    },
+    {
+      "scene": "Cbox (real-time)",
+      "render": "realtime/cbox_simple_realtime.exr"
+    },
+    {
+      "scene": "Bonus: Teapot with shadow mapping",
+      "render": "realtime/teapot_simple_realtime_bonus.exr"
+    }
+	]
+}

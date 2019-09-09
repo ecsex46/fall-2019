@@ -1,0 +1,32 @@
+{
+  "firstlast": "John Doe",
+  "id": 123456789,
+  "assignment": 1,
+  "course": 446,
+  "renders": [
+    {
+      "scene": "Sphere (offline)",
+      "render": "offline/sphere_normal_offline.exr"
+    },
+    {
+      "scene": "Sphere 8 spp (offline)",
+      "render": "offline/sphere_normal_offline_8spp.exr"
+    },
+    {
+      "scene": "Dragon (offline)",
+      "render": "offline/dragon_normal_offline.exr"
+    },
+    {
+      "scene": "Dragon 8 spp (offline)",
+      "render": "offline/dragon_normal_offline_8spp.exr"
+    },
+    {
+      "scene": "Sphere (real-time)",
+      "render": "realtime/sphere_normal_realtime.exr"
+    },
+    {
+      "scene": "Dragon (real-time)",
+      "render": "realtime/dragon_normal_realtime.exr"
+    }
+  ]
+}

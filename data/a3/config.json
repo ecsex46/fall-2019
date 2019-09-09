@@ -1,0 +1,40 @@
+{
+  "firstlast": "John Doe",
+  "id": 123456789,
+  "course": 446,
+  "assignment": 3,
+  "renders": [
+    {
+      "scene": "Ambient occlusion with spherical uniform sampling",
+      "render": "offline/spaceship_ao_sphere.exr"
+    },
+    {
+      "scene": "Ambient occlusion with hemispherical uniform sampling",
+      "render": "offline/spaceship_ao_hemisphere.exr"
+    },
+    {
+      "scene": "Ambient occlusion with cosine-weighted hemispherical sampling",
+      "render": "offline/spaceship_ao_cosine.exr"
+    },
+    {
+      "scene": "Reflection occlusion",
+      "render": "offline/spaceship_ro_offline.exr"
+    },
+    {
+      "scene": "Teapot with cosine-weighted hemispherical sampling",
+      "render": "offline/teapot_cosine.exr"
+    },
+    {
+      "scene": "Teapot with BRDF sampling",
+      "render": "offline/teapot_bsdf.exr"
+    },
+    {
+      "scene": "Teapot with surface area sampling",
+      "render": "offline/teapot_area.exr"
+    },
+    {
+      "scene": "Teapot with subtended solid angle sampling",
+      "render": "offline/teapot_solid_angle.exr"
+    }
+  ]
+}

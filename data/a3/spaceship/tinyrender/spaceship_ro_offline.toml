@@ -1,0 +1,18 @@
+[input]
+objfile = "../mesh/spaceship.obj"
+
+[camera]
+eye = [ 4.5, 0.65, -0.15 ]
+at = [ 0.0, 0.65, -0.15 ]
+up = [ 0.0, 1.0, 0.0 ]
+fov = 30.0
+
+[film]
+width = 800
+height = 450
+
+[renderer]
+realtime = false
+type = "ro"
+spp = 16
+exponent = 300.0
