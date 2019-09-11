@@ -14,12 +14,15 @@ find_package(Boost 1.65.0 COMPONENTS system filesystem REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIR})
 
-if(APPLE)
+if(NOT WIN32)
     find_package(OpenGL REQUIRED)
     if(OPENGL_FOUND)
         message("OpenGL Found")
     endif()
-    include_directories(${OPENGL_INCLUDE_DIRS})
+
+    if (APPLE)
+        include_directories(${OPENGL_INCLUDE_DIRS})
+    endif()
 endif()
 
 find_package(GLEW REQUIRED)
