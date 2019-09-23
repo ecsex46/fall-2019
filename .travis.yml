@@ -1,0 +1,41 @@
+sudo: required
+language: cpp
+dist: xenial
+branches:
+  only:
+    - master
+
+notifications:
+  email: false
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - gcc-5
+          - g++-5
+          - cmake
+      before_install:
+        - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6B05F25D762E3157
+        - sudo apt update -qq
+        - sudo apt install -qq libglew-dev libsdl2-dev
+      script:
+        - mkdir build && cd build && cmake ../ && make -j 2
+    - os: osx
+      osx_image: xcode8.3
+      compiler: clang
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
+          - /usr/local/Homebrew
+      before_cache:
+        - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew cleanup; fi
+        - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then find /usr/local/Homebrew \! -regex ".+\.git.+" -delete; fi
+      before_install: brew install glew sdl2
+      script:
+        - mkdir build && cd build && cmake ../ && make -j 2
