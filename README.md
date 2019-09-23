@@ -2,7 +2,7 @@
 
 ## TinyRender Codebase [![Build Status](https://travis-ci.com/ecsex46/fall-2019.svg?branch=master)](https://travis-ci.com/ecsex46/fall-2019)
 
-## Important links
+### Important links
 
 Course Website: http://www.cim.mcgill.ca/~derek/ecse446.html
 
