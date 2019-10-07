@@ -62,6 +62,26 @@ enum EBSDF {
     EBSDFs
 };
 
+/**
+ * SamplingType enumeration for Ambient Occlusion integrator
+ */
+
+enum ESamplingType { 
+	ESpherical = 0, 
+	EHemispherical, 
+	ECosineHemispherical };
+
+/**
+ * Sampling strategy for direct integrator
+ */
+enum ESamplingStrategy {
+    EMIS = 0,
+    EArea,
+    ESolidAngle,
+    ECosineHemisphere,
+    EBSDF
+};
+
 // Forward declarations
 struct Scene;
 struct WorldData;
@@ -259,7 +279,7 @@ struct Config {
             size_t emitterSamples{};
             /* Number of bsdf samples to take */
             size_t bsdfSamples{};
-            string samplingStrategy;
+            ESamplingStrategy samplingStrategy;
         } di;
         /* Config options for the photon mapping integrator */
         struct pm_s{
@@ -276,6 +296,7 @@ struct Config {
         } pm{};
         /* Config options for the ambient occlusion integrator */
         struct ao_s{
+			ESamplingType sampling_type;
         } ao;
         /* Config options for the reflection occlusion integrator */
         struct ro_s{

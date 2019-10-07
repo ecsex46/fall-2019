@@ -59,7 +59,7 @@ bool loadTOML(TinyRender::Config& config, const std::string& inputFile) {
         }
         else if (type == "ssao") {
             config.renderpass = TinyRender::ESSAORenderPass;
-        }
+        }		
         else if (type == "gi") {
             config.renderpass = TinyRender::EGIRenderPass;
             config.integratorSettings.gi.maxDepth = renderer->get_as<int>("maxDepth").value_or(5);
@@ -82,6 +82,14 @@ bool loadTOML(TinyRender::Config& config, const std::string& inputFile) {
         }
         else if (type == "ao") {
             config.integrator = TinyRender::EAOIntegrator;
+			auto sample_type_str = renderer->get_as<std::string>("sampling_type").value_or("cosine");
+			if (sample_type_str == "sphere")
+				config.integratorSettings.ao.sampling_type = TinyRender::ESamplingType::ESpherical;
+			else if (sample_type_str == "hemisphere")
+				config.integratorSettings.ao.sampling_type = TinyRender::ESamplingType::EHemispherical;
+			else
+				config.integratorSettings.ao.sampling_type = TinyRender::ESamplingType::ECosineHemispherical;
+
         }
         else if (type == "ro") {
             config.integrator = TinyRender::EROIntegrator;
@@ -91,7 +99,17 @@ bool loadTOML(TinyRender::Config& config, const std::string& inputFile) {
             config.integrator = TinyRender::EDirectIntegrator;
             config.integratorSettings.di.emitterSamples = renderer->get_as<size_t>("emitterSamples").value_or(1);
             config.integratorSettings.di.bsdfSamples = renderer->get_as<size_t>("bsdfSamples").value_or(1);
-            config.integratorSettings.di.samplingStrategy = renderer->get_as<string>("samplingStrategy").value_or("emitter");
+            string samplingStrategy = renderer->get_as<string>("samplingStrategy").value_or("emitter");
+            if (samplingStrategy == "mis")
+                config.integratorSettings.di.samplingStrategy = TinyRender::ESamplingStrategy::EMIS;
+            else if (samplingStrategy == "area")
+                config.integratorSettings.di.samplingStrategy = TinyRender::ESamplingStrategy::EArea;
+            else if (samplingStrategy == "solidAngle")
+                config.integratorSettings.di.samplingStrategy = TinyRender::ESamplingStrategy::ESolidAngle;
+            else if (samplingStrategy == "cosineHemisphere")
+                config.integratorSettings.di.samplingStrategy = TinyRender::ESamplingStrategy::ECosineHemisphere;
+            else
+                config.integratorSettings.di.samplingStrategy = TinyRender::ESamplingStrategy::EBSDF;
         }
         else if (type == "path") {
             config.integrator = TinyRender::EPathTracerIntegrator;

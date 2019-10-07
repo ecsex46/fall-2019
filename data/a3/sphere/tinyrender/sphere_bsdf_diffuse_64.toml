@@ -14,7 +14,7 @@ height = 400
 [renderer]
 type = "direct"
 realtime = false
-emitterSamples = 64
-bsdfSamples = 0
+emitterSamples = 0
+bsdfSamples = 64
 samplingStrategy = "bsdf"
 spp = 1
