@@ -32,6 +32,8 @@ struct DiffuseBSDF : BSDF {
             combinedType |= components[i];
     }
 
+    inline float getExponent(const SurfaceInteraction& i) const override { return 1.f; }
+
     v3f eval(const SurfaceInteraction& i) const override {
         v3f val(0.f);
 

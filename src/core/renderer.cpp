@@ -36,6 +36,8 @@
 #include <integrators/ro.h>
 
 #include <integrators/direct.h>
+#include <integrators/polygonal.h>
+#include <renderpasses/polygonal.h>
 
 #include <integrators/path.h>
 #include <renderpasses/gi.h>
@@ -65,6 +67,11 @@ bool Renderer::init(const bool isRealTime, bool nogui) {
         /*else if (scene.config.renderpass == ESSAORenderPass) {
             renderpass = std::unique_ptr<SSAOPass>(new SSAOPass(scene));
         }*/
+
+		else if (scene.config.renderpass == EPolygonalRenderPass) {
+			renderpass = std::unique_ptr<PolygonalPass>(new PolygonalPass(scene));
+		}
+
         else if (scene.config.renderpass == EGIRenderPass) {
             renderpass = std::unique_ptr<GIPass>(new GIPass(scene));
         }
@@ -90,6 +97,9 @@ bool Renderer::init(const bool isRealTime, bool nogui) {
         }
         else if (scene.config.integrator == EDirectIntegrator) {
             integrator = std::unique_ptr<DirectIntegrator>(new DirectIntegrator(scene));
+        }
+        else if (scene.config.integrator == EPolygonalIntegrator) {
+            integrator = std::unique_ptr<PolygonalIntegrator>(new PolygonalIntegrator(scene));
         }
         else if (scene.config.integrator == EPathTracerIntegrator) {
             integrator = std::unique_ptr<PathTracerIntegrator>(new PathTracerIntegrator(scene));

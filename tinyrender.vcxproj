@@ -128,8 +128,14 @@
     <ClInclude Include="src\renderpasses\direct.h" />
     <ClInclude Include="src\renderpasses\gi.h" />
     <ClInclude Include="src\renderpasses\normal.h" />
+    <ClInclude Include="src\renderpasses\polygonal.h" />
     <ClInclude Include="src\renderpasses\ssao.h" />
     <ClInclude Include="src\core\renderpass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaders\emitter_polygonal.fs" />
+    <None Include="src\shaders\polygonal.fs" />
+    <None Include="src\shaders\polygonal.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

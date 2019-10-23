@@ -14,7 +14,6 @@
 #include "tiny_obj_loader.h"
 
 
-
 /**
  * Load TOML scene file and create scene objects.
  */
@@ -48,6 +47,10 @@ bool loadTOML(TinyRender::Config& config, const std::string& inputFile) {
 	// Bonus 
 	auto bonus = renderer->get_as<bool>("bonus").value_or(false);
 	config.bonus = bonus;
+
+	// Test for automated scripting
+	auto test = renderer->get_as<bool>("test").value_or(false);
+	config.test = test;
 		
     // Real-time renderpass
     if (realTime) {
@@ -60,6 +63,13 @@ bool loadTOML(TinyRender::Config& config, const std::string& inputFile) {
         else if (type == "ssao") {
             config.renderpass = TinyRender::ESSAORenderPass;
         }		
+
+		else if (type == "polygonal") {
+			config.renderpass = TinyRender::EPolygonalRenderPass;
+            config.integratorSettings.poly.alpha = renderer->get_as<double>("alpha").value_or(1);
+            config.integratorSettings.poly.visSamples = renderer->get_as<size_t>("visSamples").value_or(1);
+		}
+
         else if (type == "gi") {
             config.renderpass = TinyRender::EGIRenderPass;
             config.integratorSettings.gi.maxDepth = renderer->get_as<int>("maxDepth").value_or(5);
@@ -110,6 +120,19 @@ bool loadTOML(TinyRender::Config& config, const std::string& inputFile) {
                 config.integratorSettings.di.samplingStrategy = TinyRender::ESamplingStrategy::ECosineHemisphere;
             else
                 config.integratorSettings.di.samplingStrategy = TinyRender::ESamplingStrategy::EBSDF;
+        }
+        else if (type == "polygonal") {
+            config.integrator = TinyRender::EPolygonalIntegrator;
+            config.integratorSettings.poly.alpha = renderer->get_as<double>("alpha").value_or(1);
+            config.integratorSettings.poly.visSamples = renderer->get_as<size_t>("visSamples").value_or(1);
+            config.integratorSettings.poly.traceShadows = renderer->get_as<bool>("traceShadows").value_or(false);
+            string method = renderer->get_as<string>("method").value_or("area");
+            if (method == "area")
+                config.integratorSettings.poly.method = TinyRender::EPolygonalMethod::ESurfaceArea;
+            else if (method == "controlVariates")
+                config.integratorSettings.poly.method = TinyRender::EPolygonalMethod::EControlVariates;
+            else
+                config.integratorSettings.poly.method = TinyRender::EPolygonalMethod::EArvoAnalytic;
         }
         else if (type == "path") {
             config.integrator = TinyRender::EPathTracerIntegrator;

@@ -15,6 +15,26 @@
     {
       "scene": "Veach with MIS",
       "render": "offline/veach_mis.exr"
+    },
+	{
+      "scene": "(Offline) McGill with analytic shading",
+      "render": "offline/mcgill_analytic_offline.exr"
+    },
+	{
+      "scene": "(Offline) McGill with Monte Carlo surface area shading",
+      "render": "offline/mcgill_area_offline.exr"
+    },
+	{
+      "scene": "(Offline) McGill with Control Variates",
+      "render": "offline/mcgill_cv_offline.exr"
+    },
+	{
+      "scene": "(Real-time) Star with Control Variates",
+      "render": "realtime/star_analytic_realtime.exr"
+    },
+	{
+      "scene": "(Real-time) McGill with hybrid rendering",
+      "render": "realtime/mcgill_hybrid_realtime.exr"
     }
   ]
 }

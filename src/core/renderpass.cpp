@@ -125,9 +125,9 @@ bool RenderPass::initOpenGL(int width, int height) {
         exit(EXIT_FAILURE);
     }
 
-    //clear and swap
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+    // Clear and swap
+    // glEnable(GL_CULL_FACE);
+    // glCullFace(GL_BACK);
 
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -416,8 +416,9 @@ void RenderPass::renderPostProcessShader() {
     glBindVertexArray(0);
 }
 
-void RenderPass::updateCamera(SDL_Event& e) {
-    switch (e.type) {
+bool RenderPass::updateCamera(SDL_Event& e) {
+	bool change = true; // Used to detect if a camera change occured
+    switch (e.type) { 
 
         case SDL_KEYDOWN:
             if (e.key.keysym.sym == SDLK_w) {
@@ -428,10 +429,13 @@ void RenderPass::updateCamera(SDL_Event& e) {
                 camera.Move(BACK);
             } else if (e.key.keysym.sym == SDLK_d) {
                 camera.Move(RIGHT);
-            }
+			}
+			else {
+				change = false;
+			}
             break;
 
-        case SDL_MOUSEBUTTONDOWN:camera.move_camera = true;
+        case SDL_MOUSEBUTTONDOWN:camera.move_camera = true;	
             break;
 
         case SDL_MOUSEBUTTONUP:camera.move_camera = false;
@@ -439,13 +443,21 @@ void RenderPass::updateCamera(SDL_Event& e) {
 
         case SDL_MOUSEMOTION: {
             /* If the mouse is moving to the left */
-            if (e.motion.xrel < 0)
-                camera.Move2D(e.motion.x, e.motion.y);
-            else if (e.motion.xrel > 0)
-                camera.Move2D(e.motion.x, e.motion.y);
+			change = false; // camera.move_camera is the boolean used for this case
+			if (e.motion.xrel < 0)
+				camera.Move2D(e.motion.x, e.motion.y);
+			else if (e.motion.xrel > 0)
+				camera.Move2D(e.motion.x, e.motion.y);			
         }
             break;
+		default:
+			change = false;
+			break;
     }
+	return camera.move_camera || change;
 }
 
+void RenderPass::handleEvents(SDL_Event& e){
+	RenderPass::updateCamera(e);
+}
 TR_NAMESPACE_END

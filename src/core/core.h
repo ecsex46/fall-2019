@@ -34,6 +34,7 @@ enum EIntegrator {
     EAOIntegrator,
     EROIntegrator,
     EDirectIntegrator,
+    EPolygonalIntegrator,
     EPathTracerIntegrator,
     EPhotonMapperIntegrator,
     EIntegrators
@@ -44,11 +45,12 @@ enum EIntegrator {
  * A new item needs to be added when creating a new renderpass.
  */
 enum ERenderPass {
-    ENormalRenderPass = 0,
-    EDirectRenderPass,
-    ESSAORenderPass,
-    ERORenderPass,
-    EGIRenderPass,
+	ENormalRenderPass = 0,
+	EDirectRenderPass,
+	ESSAORenderPass,
+	ERORenderPass,
+	EGIRenderPass,
+	EPolygonalRenderPass,
     ERenderPasses
 };
 
@@ -69,7 +71,9 @@ enum EBSDF {
 enum ESamplingType { 
 	ESpherical = 0, 
 	EHemispherical, 
-	ECosineHemispherical };
+	ECosineHemispherical,
+	ESamplingTypes
+};
 
 /**
  * Sampling strategy for direct integrator
@@ -79,7 +83,18 @@ enum ESamplingStrategy {
     EArea,
     ESolidAngle,
     ECosineHemisphere,
-    EBSDF
+    EBSDF,
+    ESamplingStrategies
+};
+
+/**
+ * Sampling strategy for polygonal integrator
+ */
+enum EPolygonalMethod {
+    EArvoAnalytic,
+    ESurfaceArea,
+    EControlVariates,
+    EPolygonalMethods
 };
 
 // Forward declarations
@@ -268,6 +283,8 @@ struct Config {
     int spp;
 	/* Enable code for bonus*/
 	bool bonus;
+	/* Integer used to specify an automated test */
+	bool test;
 
     struct IntegratorConfig {
         IntegratorConfig() : di{}{};
@@ -281,6 +298,15 @@ struct Config {
             size_t bsdfSamples{};
             ESamplingStrategy samplingStrategy;
         } di;
+
+        /* Config options for polygonal lights integrator */
+        struct poly_s {
+            float alpha;
+            size_t visSamples;
+            bool traceShadows;
+            EPolygonalMethod method;
+        } poly;
+
         /* Config options for the photon mapping integrator */
         struct pm_s{
             int photonRrDepth;
@@ -381,6 +407,7 @@ struct BSDF {
     std::vector<unsigned int> components;
     unsigned int combinedType;
     BSDF(const WorldData& d, const Config& c, const size_t matID);
+    virtual float getExponent(const SurfaceInteraction&) const = 0;
     virtual v3f eval(const SurfaceInteraction&) const = 0;
     virtual float pdf(const SurfaceInteraction&) const = 0;
     virtual v3f sample(SurfaceInteraction&, Sampler&, float* pdf = nullptr) const = 0;

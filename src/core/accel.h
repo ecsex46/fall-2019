@@ -164,7 +164,7 @@ struct AcceleratorBVH {
                 info.p = barycentric(v0, v1, v2, iInfo.u, iInfo.v);
                 info.frameNg = Frame(glm::normalize(glm::cross(v1 - v0, v2 - v0)));
                 info.frameNs = Frame(glm::normalize(barycentric(n0, n1, n2, info.u, info.v)));
-                info.wo = info.frameNs.toLocal(-ray.d);
+                info.wo = info.frameNs.toLocal(glm::normalize(-ray.d));
                 info.matID = s.mesh.material_ids[info.primID];
                 return true;
             }

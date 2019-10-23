@@ -1,0 +1,18 @@
+[input]
+objfile = "../mesh/mcgill.obj"
+
+[camera]
+eye = [5.0, 3.0, -2.0]
+at = [-2.0, 0.4, 1.0]
+up = [0.0, 1.0, 0.0]
+fov = 35.0
+
+[film]
+width = 600
+height = 400
+
+[renderer]
+type = "polygonal"
+realtime = false
+method = "analytic"
+spp = 1

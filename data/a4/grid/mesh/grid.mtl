@@ -1,0 +1,17 @@
+# Blender MTL File: 'scene.blend'
+# Material Count: 3
+
+newmtl grid
+Kd 0.1 0.2 1.0
+Ni 1.000000
+d 1.000000
+illum 7
+
+newmtl diffuse
+Kd 0.5 0.5 0.5
+Ni 1.000000
+d 1.000000
+illum 7
+
+newmtl light
+Ke 12 12 12

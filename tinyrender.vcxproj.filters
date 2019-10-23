@@ -39,7 +39,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\bsdfs\mixture.h">
-          <Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\accel.h">
       <Filter>Header Files</Filter>
@@ -101,5 +101,13 @@
     <ClInclude Include="src\renderpasses\gi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\renderpasses\polygonal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaders\polygonal.vs" />
+    <None Include="src\shaders\polygonal.fs" />
+    <None Include="src\shaders\emitter_polygonal.fs" />
   </ItemGroup>
 </Project>
