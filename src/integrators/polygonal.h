@@ -8,7 +8,7 @@
 #pragma once
 
 #include <tiny_obj_loader.h>
-
+#define RAY_EPS_CV 1e-5 // Use when setting min and max dist for ray in control variates code
 TR_NAMESPACE_BEGIN
 
 /**
@@ -106,6 +106,7 @@ struct PolygonalIntegrator : Integrator {
     }
 
     /// Stand-alone estimator for h - alpha*g (without primary ray)
+	/// Use RAY_EPS_CV when setting min and max dist for shadow ray
     v3f estimateVisDiff(Sampler& sampler, SurfaceInteraction& i, const Emitter& em) const {
         v3f sum(0.f);
 
@@ -115,6 +116,7 @@ struct PolygonalIntegrator : Integrator {
     }
 
     /// Control variates using Arvo '94 for direct illumination; ray trace shadows
+	
     v3f renderControlVariates(const Ray& ray, Sampler& sampler) const {
         v3f Lr(0.f);
 

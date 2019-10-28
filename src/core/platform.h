@@ -56,7 +56,7 @@ inline string pp(string p) {
 #define INV_FOURPI 0.07957747154594766788f
 
 #define deg2rad M_PI / 180.f
-#define Epsilon 1e-5f
+#define Epsilon 1e-8f
 typedef glm::fvec2 v2f;
 typedef glm::fvec3 v3f;
 typedef glm::fvec4 v4f;
