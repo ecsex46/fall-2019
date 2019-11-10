@@ -96,23 +96,21 @@ struct DirectIntegrator : Integrator {
     }
 
     v3f render(const Ray& ray, Sampler& sampler) const override {
-        if (m_samplingStrategy == "mis")
+        if (m_samplingStrategy == ESamplingStrategy::EMIS)
             return this->renderMIS(ray, sampler);
-        else if (m_samplingStrategy == "area")
+        else if (m_samplingStrategy == ESamplingStrategy::EArea)
             return this->renderArea(ray, sampler);
-        else if (m_samplingStrategy == "solidAngle")
+        else if (m_samplingStrategy == ESamplingStrategy::ESolidAngle)
             return this->renderSolidAngle(ray, sampler);
-        else if (m_samplingStrategy == "cosineHemisphere")
+        else if (m_samplingStrategy == ESamplingStrategy::ECosineHemisphere)
             return this->renderCosineHemisphere(ray, sampler);
-        else if (m_samplingStrategy == "bsdf")
+        else
             return this->renderBSDF(ray, sampler);
-        std::cout << "Error: wrong strategy" << std::endl;
-        exit(EXIT_FAILURE);
     }
 
     size_t m_emitterSamples;     // Number of emitter samples
     size_t m_bsdfSamples;        // Number of BSDF samples
-    string m_samplingStrategy;   // Sampling strategy to use
+    ESamplingStrategy m_samplingStrategy;   // Sampling strategy to use
 };
 
 TR_NAMESPACE_END

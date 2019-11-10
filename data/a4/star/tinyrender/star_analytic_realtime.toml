@@ -1,0 +1,17 @@
+[input]
+objfile = "../mesh/star_diffuse.obj"
+
+[camera]
+eye = [5.0, 1.0, 0.0]
+at = [-2.0, 0.5, 0.0]
+up = [0.0, 1.0, 0.0]
+fov = 35.0
+
+[film]
+width = 600
+height = 400
+
+[renderer]
+type = "polygonal"
+realtime = true
+

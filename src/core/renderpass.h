@@ -107,9 +107,10 @@ struct RenderPass {
 
     virtual void buildVBO(size_t objectIdx);
     virtual void buildVAO(size_t objectIdx);
+	virtual void handleEvents(SDL_Event& e);
 
     bool save(GLfloat* data);
-    void updateCamera(SDL_Event& e);
+    bool updateCamera(SDL_Event& e);	
 
     // Utils
     bool initOpenGL(int width, int height);

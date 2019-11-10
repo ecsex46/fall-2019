@@ -1,0 +1,11 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl diffuse
+Kd 0.5 0.5 0.5
+Ni 1.000000
+d 1.000000
+illum 7
+
+newmtl star
+Ke 4 8 10

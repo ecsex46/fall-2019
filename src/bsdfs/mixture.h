@@ -53,6 +53,10 @@ struct MixtureBSDF : BSDF {
             combinedType |= component;
     }
 
+    inline float getExponent(const SurfaceInteraction& i) const override {
+        return exponent->eval(worldData, i);
+    }
+
     inline v3f reflect(const v3f& d) const {
         return v3f(-d.x, -d.y, d.z);
     }

@@ -30,6 +30,13 @@ inline T clamp(T v, T min, T max) {
 }
 
 /**
+ * Clamp vector below
+ */
+inline v3f clampBelow(const v3f& v, const float c) {
+    return v3f(std::max(c, v.x), std::max(c, v.y), std::max(c, v.z));
+}
+
+/**
  * Checks if vector is zero.
  */
 inline bool isZero(const v3f v) {
