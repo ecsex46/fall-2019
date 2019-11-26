@@ -43,6 +43,7 @@
 #include <renderpasses/gi.h>
 #include <bsdfs/mixture.h>
 
+#include <integrators/ppm.h>
 
 TR_NAMESPACE_BEGIN
 
@@ -103,6 +104,9 @@ bool Renderer::init(const bool isRealTime, bool nogui) {
         }
         else if (scene.config.integrator == EPathTracerIntegrator) {
             integrator = std::unique_ptr<PathTracerIntegrator>(new PathTracerIntegrator(scene));
+        }
+        else if (scene.config.integrator == EPhotonMapperIntegrator) {
+            integrator = std::unique_ptr<PPMIntegrator>(new PPMIntegrator(scene));
         }
         else {
             throw std::runtime_error("Invalid integrator type");

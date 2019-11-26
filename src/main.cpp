@@ -141,6 +141,21 @@ bool loadTOML(TinyRender::Config& config, const std::string& inputFile) {
             config.integratorSettings.pt.rrDepth = renderer->get_as<int>("rrDepth").value_or(5);
             config.integratorSettings.pt.rrProb = renderer->get_as<double>("rrProb").value_or(0.95f);
         }
+        else if (type == "photon") {
+            config.integrator = TinyRender::EPhotonMapperIntegrator;
+            //pass 1
+            config.integratorSettings.pm.photonCount = renderer->get_as<int>("photonCount").value_or(100);
+            config.integratorSettings.pm.photonRrDepth = renderer->get_as<int>("photonRrDepth").value_or(5);
+            config.integratorSettings.pm.photonRrProb = renderer->get_as<double>("photonRrProb").value_or(0.95);
+
+            //pass 2
+            config.integratorSettings.pm.emitterSamplesCount = renderer->get_as<size_t>("emitterSamplesCount").value_or(1);
+            config.integratorSettings.pm.searchRadius = renderer->get_as<double>("searchRadius").value_or(2.f);
+            config.integratorSettings.pm.photonsSearchCount = renderer->get_as<int>("photonsSearchCount").value_or(100);
+            config.integratorSettings.pm.useFinalGather = renderer->get_as<bool>("useFinalGather").value_or(false);
+            config.integratorSettings.pm.finalGatherSamplesCount = renderer->get_as<int>("finalGatherSamplesCount").value_or(10);
+            config.integratorSettings.pm.usePhotonsForDirect = renderer->get_as<bool>("usePhotonsForDirect").value_or(false);
+        }
         else {
             throw std::runtime_error("Invalid integrator type");
         }
